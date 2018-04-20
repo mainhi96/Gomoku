@@ -18,12 +18,12 @@ import javax.xml.ws.Service;
  */
 public class SeverThread extends Thread{
   final  private PlayerSocket player;
- final private PlayerSocket player1;
+  private PlayerSocket player1;
    
     
     public SeverThread(Socket socket, Socket socket1) throws IOException{
        player= new PlayerSocket(socket);
-       player1= new PlayerSocket(socket1);
+      player1= new PlayerSocket(socket1);
       
        
     }
@@ -82,7 +82,7 @@ public class SeverThread extends Thread{
 }
     //nhan
    /* @Override
-   // public void run(){
+    public void run(){
         int index;
         int rowIndex;
         int colIndex;

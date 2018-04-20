@@ -37,7 +37,8 @@ public class GameBoard {
        if (board[rowIndex][colIndex]!=-1) return "false";
         board[rowIndex][colIndex] = player;
         String kqString= win(rowIndex,colIndex, player);
-      if (kqString!="false") return "Player "+player+ " "+kqString;
+      if (kqString!="false") return "Win: "+player+ " "+kqString;
+     
         return "true";
         
     }

@@ -12,10 +12,12 @@
         android:id="@+id/imv"
         android:layout_width="360dp"
         android:layout_height="360dp" />
+
     <TextView
+        android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv"/>
+        android:paddingTop="20dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

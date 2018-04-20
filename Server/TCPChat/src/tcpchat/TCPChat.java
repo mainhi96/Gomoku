@@ -33,11 +33,11 @@ public class TCPChat {
     {
         Scanner scan = new Scanner(System.in);
         String mess;
-        
+        String kq;
         while (true) {
             try {
                 Socket socket = serverSocket.accept();
-                Socket socket1 = serverSocket.accept();
+               Socket socket1 = serverSocket.accept();
             
                 SeverThread severThread= new SeverThread(socket,socket1);
                 severThread.start();
@@ -46,32 +46,46 @@ public class TCPChat {
                 
                 severThread.send1("1");
                 severThread.send("0");
-               // mess=severThread.nhan();
-                // System.out.println(mess);
+                
+                
+               // 
                
                 while(true){
                     mess=severThread.nhan();
-               if (!gameBoard.check(mess, 0).equals("false")){
+                    kq=gameBoard.check(mess, 0);
+               if (kq.equals("true")){
                    severThread.send1(mess);
                    severThread.send(mess);
                    
                }
-               else {
+               else if (kq.equals("false")){
+                   
                    severThread.send("false");
                    continue;
+               }
+               else {
+                   severThread.send1(mess+kq);
+                   severThread.send(mess+kq);
+                  
                }
                 
                resend2:
                 while (true) {                             
                 mess=severThread.nhan1();
-                if (!gameBoard.check(mess, 1).equals("false")){
+                kq=gameBoard.check(mess, 1);
+                if (kq.equals("true")){
                    severThread.send(mess);
                    severThread.send1(mess);
                    break;
                }
-               else {
+               else if (kq.equals("false")){
                    severThread.send1("false");
                    continue resend2;
+                   
+               }
+               else {
+                   severThread.send1(mess+kq);
+                   severThread.send(mess+kq);
                    
                }
                     }
@@ -96,6 +110,8 @@ public class TCPChat {
             tCPChat.waitConnection();
       
           //  Scanner scan = new Scanner(System.in);
+          
+         
            
         } catch (Exception e) {
             System.out.println("Can't create server socket");
